@@ -181,3 +181,4 @@ class GameItemView(Tk):
 if __name__ == "__main__":
     window = GameItemView()
     window.mainloop()
+
