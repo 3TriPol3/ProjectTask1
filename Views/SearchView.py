@@ -46,6 +46,11 @@ class SaerchView(Tk):
         for item in self.elemnt:
             self.table_data.insert("", END,values=item)
         self.table_data.pack()
+
+        #Кнопка закрытия окна / перехода в главное
+        self.button_close = ttk.Button(self,text="Вернуться на главную страницу", command=self.destroy)
+        self.button_close.pack(anchor=CENTER)
+
 if __name__ == "__main__":
     window = SaerchView(search_string="")
     window.mainloop()
