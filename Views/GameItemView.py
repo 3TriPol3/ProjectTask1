@@ -118,12 +118,13 @@ class GameItemView(Tk):
         self.label_search.grid(row=0)
         self.text_search = Text(self.search_frame, height=5, width=50)
         self.text_search.grid(row=1,column=0)
-        self.button_search = ttk.Button(self.search_frame,text="Найти")
+        self.button_search = ttk.Button(self.search_frame,text="Найти", command=self.search)
         self.button_search.grid(row=1,column=2, padx=5,sticky="s")
     # метод передачи значения из строки ввода text_search в окно SaerchView
     def search(self):
         self.string = self.text_search.get("1.0","end") # передачи значения из строки ввода text_search
-        window = SaerchView(self.search_frame)
+        self.string = self.string.strip()
+        window = SaerchView(search_string=self.string)
 
     # Для обновления данных в таблице создал метод добавления записей из БД
     def table(self):
