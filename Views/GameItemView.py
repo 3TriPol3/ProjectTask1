@@ -125,6 +125,7 @@ class GameItemView(Tk):
         self.string = self.text_search.get("1.0","end") # передачи значения из строки ввода text_search
         self.string = self.string.strip()
         window = SaerchView(search_string=self.string)
+        self.destroy()
 
     # Для обновления данных в таблице создал метод добавления записей из БД
     def table(self):

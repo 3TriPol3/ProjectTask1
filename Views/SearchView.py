@@ -4,6 +4,7 @@ from tkinter import ttk
 from Controllers.GameItemController import GameItemController
 
 
+
 class SaerchView(Tk):
     def __init__(self, search_string):
         super().__init__()
@@ -50,6 +51,14 @@ class SaerchView(Tk):
         #Кнопка закрытия окна / перехода в главное
         self.button_close = ttk.Button(self,text="Вернуться на главную страницу", command=self.destroy)
         self.button_close.pack(anchor=CENTER)
+        #Переход на главное окно
+        self.button_move = ttk.Button(self, text="Вернуться на главную страницу 2", command=self.move)
+        self.button_move.pack(anchor=CENTER)
+
+    def move(self):
+        from Views.GameItemView import GameItemView
+        window_home = GameItemView()
+        self.destroy()
 
 if __name__ == "__main__":
     window = SaerchView(search_string="")
