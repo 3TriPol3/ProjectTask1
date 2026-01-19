@@ -12,7 +12,7 @@ class SaleView(Tk):
         self.sale_string = sale_string
 
         # Атрибуты окна
-        self.title("Найденые предметы")
+        self.title("Продажа")
         self.geometry("1280x800")
 
         # Фрейм Добавить предмет
@@ -29,7 +29,7 @@ class SaleView(Tk):
 
         )
 
-        # Фрайм в которм расположен текст Добавить Предмет (находится внутри фрейма add_frame)
+        # Фрайм в которм расположен текст Передать Предмет (находится внутри фрейма add_frame)
         self.add_title_frame = ttk.Frame(self.add_frame,
                                          relief=SOLID,  # тип линии фрейма - СПЛОШНАЯ
                                          borderwidth=1,  # ширина границы фрейма
@@ -41,7 +41,6 @@ class SaleView(Tk):
                                   )
         self.add_title = ttk.Label(self.add_title_frame, text="Передать Предмет")
         self.add_title.pack()
-
 
         # Фрейм для таблицы
         self.table_frame = ttk.Frame(
@@ -129,8 +128,6 @@ class SaleView(Tk):
         for item in self.elemnt:
             self.table_data.insert("",END,values=item)
         self.table_data.pack()
-
-
 
 if __name__ == "__main__":
     window = SaleView(sale_string="")
