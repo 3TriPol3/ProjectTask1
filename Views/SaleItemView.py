@@ -44,7 +44,7 @@ class SaleItemView(Tk):
         self.sale_entry = ttk.Entry(self.sale_frame)
         self.sale_entry.grid(row=1,column=0)
 
-        self.sale_button = ttk.Button(self.sale_frame,text="Передать")
+        self.sale_button = ttk.Button(self.sale_frame,text="Передать", command=self.update_player)
         self.sale_button.grid(row=1,column=1, padx=15)
 
         # Для обновления данных в таблице создал метод добавления записей из БД
@@ -64,14 +64,34 @@ class SaleItemView(Tk):
         for item in self.elemnt:
             self.table_data.insert("", END, values=item)
         self.table_data.pack()
-    def row_selected(self):
+    def row_selected(self, event):
         '''
         Метод передаст данные о выбранной записи - > передаст строку
         :return:
         '''
-        # С помощью метода selection() self.row передаётся список из одной строки / [['id,name,...']]
+        # С помощью метода selection() self.row передаётся список из одной строки / [('id,name,...')]
         # Выделить одну строку можно с помощью [0] - индекса
+        # Получить выбранные строки
+        selected = self.table_data.selection()
+
+        # Проверить, если строки не выбранны
+        if not selected:
+            return # Завершить работу метода
+
         self.row = self.table_data.selection()[0]
+
+        self.id = self.table_data.item(self.row, "values")[0]
+        return self.id
+    def update_player(self):
+        '''
+        Из метода row_selected получает id предмета
+        Из окна sale_entry получает имя игрока
+        С помощью метода update из GameItemController меняет имя игрока в записи таблицы БД
+        и обновляет таблицу с помощью метода table()
+        :return:
+        '''
+        GameItemController.update(id = self.id, player=self.sale_entry.get())
+        self.table()
 if __name__ == "__main__":
     win = SaleItemView()
     win.mainloop()

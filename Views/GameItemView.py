@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from Controllers.GameItemController import *
+from Views.SaleItemView import SaleItemView
 from Views.SearchView import SaerchView
 
 
@@ -120,6 +121,15 @@ class GameItemView(Tk):
         self.text_search.grid(row=1,column=0)
         self.button_search = ttk.Button(self.search_frame,text="Найти",command=self.search)
         self.button_search.grid(row=1,column=2, padx=5,sticky="s")
+
+        # Кнопка перехода в окно передачи предмета
+        self.update_item = ttk.Button(self, text="Передать предмет другому игроку", command=self.sale)
+        self.update_item.pack()
+
+
+
+    def sale(self):
+        window = SaleItemView()
     # метод передачи значения из строки ввода text_search в окно SaerchView
     def search(self):
         self.string = self.text_search.get("0.0","end") # передачи значения из строки ввода text_search
