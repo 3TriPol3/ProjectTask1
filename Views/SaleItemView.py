@@ -33,7 +33,8 @@ class SaleItemView(Tk):
         self.table_data.heading('stats', text='Характеристика')
         # Превращает объекты из БД в список кортежей для таблицы
         self.table()
-
+        # Для события выбора строки из таблицы вызову метод row_selected
+        self.table_data.bind("<<TreeviewSelect>>", self.row_selected)
         # Передача предмета
         self.sale_frame = ttk.Frame(self,padding=[20])
         self.sale_frame.pack(anchor=CENTER, padx=10,pady=10)
@@ -63,6 +64,14 @@ class SaleItemView(Tk):
         for item in self.elemnt:
             self.table_data.insert("", END, values=item)
         self.table_data.pack()
+    def row_selected(self):
+        '''
+        Метод передаст данные о выбранной записи - > передаст строку
+        :return:
+        '''
+        # С помощью метода selection() self.row передаётся список из одной строки / [['id,name,...']]
+        # Выделить одну строку можно с помощью [0] - индекса
+        self.row = self.table_data.selection()[0]
 if __name__ == "__main__":
     win = SaleItemView()
     win.mainloop()
