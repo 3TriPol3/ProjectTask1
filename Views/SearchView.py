@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 
+
+
 from Controllers.GameItemController import GameItemController
 
 
@@ -47,11 +49,10 @@ class SaerchView(Tk):
         for item in self.elemnt:
             self.table_data.insert("", END,values=item)
         self.table_data.pack()
-
-        #Кнопка закрытия окна / перехода в главное
-        self.button_close = ttk.Button(self,text="Вернуться на главную страницу", command=self.destroy)
-        self.button_close.pack(anchor=CENTER)
-        #Переход на главное окно
+        # Кнопка закрытия окна / перехода в главное
+        self.button_clouse = ttk.Button(self,text="Вернуться на главную страницу", command=self.destroy)
+        self.button_clouse.pack(anchor=CENTER)
+        # переход на главное окно
         self.button_move = ttk.Button(self, text="Вернуться на главную страницу 2", command=self.move)
         self.button_move.pack(anchor=CENTER)
 
@@ -59,7 +60,6 @@ class SaerchView(Tk):
         from Views.GameItemView import GameItemView
         window_home = GameItemView()
         self.destroy()
-
 if __name__ == "__main__":
     window = SaerchView(search_string="")
     window.mainloop()
