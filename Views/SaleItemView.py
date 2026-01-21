@@ -92,6 +92,7 @@ class SaleItemView(Tk):
         '''
         GameItemController.update(id = self.id, player=self.sale_entry.get())
         self.table()
+
 if __name__ == "__main__":
     win = SaleItemView()
     win.mainloop()
