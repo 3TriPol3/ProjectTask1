@@ -47,8 +47,12 @@ class SaleItemView(Tk):
         self.sale_button = ttk.Button(self.sale_frame,text="Передать", command=self.update_player)
         self.sale_button.grid(row=1,column=1, padx=15)
 
-        # Для обновления данных в таблице создал метод добавления записей из БД
+        # Кнопка закрытия окна / перехода в главное
+        # переход на главное окно
+        self.button_move = ttk.Button(self, text="Вернуться на главную страницу", command=self.move)
+        self.button_move.pack(anchor=CENTER)
 
+        # Для обновления данных в таблице создал метод добавления записей из БД
     def table(self):
         # Очистить старые записи
         for item in self.table_data.get_children():
@@ -92,6 +96,11 @@ class SaleItemView(Tk):
         '''
         GameItemController.update(id = self.id, player=self.sale_entry.get())
         self.table()
+
+    def move(self):
+        from Views.GameItemView import GameItemView
+        window_home = GameItemView()
+        self.destroy()
 
 if __name__ == "__main__":
     win = SaleItemView()
